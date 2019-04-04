@@ -16,7 +16,16 @@ const recordAudio = () =>
           const audioBlob = new Blob(audioChunks);
           const audioUrl = URL.createObjectURL(audioBlob);
           const audio = new Audio(audioUrl);
-          const play = () => audio.play();
+          var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
+       frequency: 180,
+      peak: 10
+     });
+      var acousticGuitar = new Pizzicato.Sound(audioUrl, function() {
+    // Sound loaded!
+    acousticGuitar.addEffect(lowPassFilter);
+        acousticGuitar.play();
+    });
+          //const play = () => audio.play();
           resolve({ audioBlob, audioUrl, play });
         });
 
@@ -33,9 +42,9 @@ const handleAction = async () => {
   const actionButton = document.getElementById('action');
   actionButton.disabled = true;
   recorder.start();
-  await sleep(3000);
+  await sleep(10000);
   const audio = await recorder.stop();
   audio.play();
-  await sleep(3000);
+  await sleep(10000);
   actionButton.disabled = false;
 }
