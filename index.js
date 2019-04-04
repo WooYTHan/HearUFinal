@@ -1,3 +1,5 @@
+
+
 const recordAudio = () =>
   new Promise(async resolve => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -17,8 +19,8 @@ const recordAudio = () =>
           const audioUrl = URL.createObjectURL(audioBlob);
           const audio = new Audio(audioUrl);
           var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
-       frequency: 180,
-      peak: 10
+          frequency: 180,
+          peak: 10
      });
       var acousticGuitar = new Pizzicato.Sound(audioUrl, function() {
     // Sound loaded!
@@ -26,7 +28,7 @@ const recordAudio = () =>
         acousticGuitar.play();
     });
           //const play = () => audio.play();
-          resolve({ audioBlob, audioUrl, play });
+          //resolve({ audioBlob, audioUrl, play });
         });
 
         mediaRecorder.stop();
@@ -36,15 +38,32 @@ const recordAudio = () =>
   });
 
 const sleep = time => new Promise(resolve => setTimeout(resolve, time));
+var recorder;
 
 const handleAction = async () => {
-  const recorder = await recordAudio();
-  const actionButton = document.getElementById('action');
-  actionButton.disabled = true;
+  recorder = await recordAudio();
+  $("#action").text("Say: there is no way your dad wants gray pants");
   recorder.start();
-  await sleep(10000);
+}
+
+const endAction = async () => {
+  $("#action").text("Here is what I hear:");
   const audio = await recorder.stop();
   audio.play();
-  await sleep(10000);
-  actionButton.disabled = false;
 }
+
+
+if (annyang) {
+  // Let's define our first command. First the text we expect, and then the function it should call
+  var commands = {
+    'I am ready': handleAction,
+    'there is no way your dad wants gray pants': endAction
+
+  };
+
+  // Add our commands to annyang
+  annyang.addCommands(commands);
+  // Start listening. You can call this here, or attach this call to an event, button, etc.
+  annyang.start();
+}
+
