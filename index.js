@@ -1,4 +1,9 @@
 
+function touchStarted() {
+  if (getAudioContext().state !== 'running') {
+    getAudioContext().resume();
+  }
+}
 navigator.mediaDevices.getUserMedia({ audio: true, video: true })
 .then(function(stream) {
   audioContext = new AudioContext();
