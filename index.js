@@ -93,7 +93,7 @@ const recordAudio = () =>
        //const play = () => audio.play();
           //resolve({ audioBlob, audioUrl, play });
         });
-        mediaRecorder.stop();
+        //mediaRecorder.stop();
       });
 
     resolve({ start, stop });

@@ -25,7 +25,7 @@ body{
   margin-bottom: 10px;
 }
 .pid{
-  width: calc(10% - 148.5px);
+  width: calc(12% - 148.5px);
   height: 120px;
   display: inline-block;
   margin: 5px;
@@ -41,7 +41,7 @@ body{
 	color: #112E94;
     /* left: 30%; */
     padding: 0 10% 0 10%;
-    font-size: 80px;
+    font-size: 60px;
     width: 80%;
     text-align: center;
     position: relative;
