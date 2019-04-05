@@ -35,7 +35,7 @@ navigator.mediaDevices.getUserMedia({ audio: true, video: true })
 
 function colorPids(vol) {
   let all_pids = $('.pid');
-  let amout_of_pids = Math.round(vol/10);
+  let amout_of_pids = Math.round(vol/16);
   let elem_range = all_pids.slice(0, amout_of_pids)
   for (var i = 0; i < all_pids.length; i++) {
     all_pids[i].style.backgroundColor="rgba(17, 46, 148, 0.05)";
