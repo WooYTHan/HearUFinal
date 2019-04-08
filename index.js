@@ -25,7 +25,7 @@ navigator.mediaDevices.getUserMedia({ audio: true, video: true })
       var average = values/length;
     
     colorPids(Math.round(average))
-    console.log(Math.round(average));
+    //console.log(Math.round(average));
     // colorPids(average);
   }
   })
@@ -67,33 +67,37 @@ const recordAudio = () =>
           const audioBlob = new Blob(audioChunks);
           const audioUrl = URL.createObjectURL(audioBlob);
           const audio = new Audio(audioUrl);
-          var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
+          audio.addEventListener("canplaythrough", function() {
+          })
+          /*var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
           frequency: 220,
           peak: 10
-     });
-      audio.addEventListener("canplaythrough", function() {
-      })
-      var acousticGuitar = new Pizzicato.Sound(audioUrl, function() {
-        acousticGuitar.play();
-        const time = Math.round(acousticGuitar.sourceNode.buffer.duration);
-        setTimeout(function() {
-            $("#bigText").text("This is what I hear:");
-            acousticGuitar.addEffect(lowPassFilter);
+          });
+          audio.addEventListener("canplaythrough", function() {
+          })
+          var acousticGuitar = new Pizzicato.Sound(audioUrl, function() {
             acousticGuitar.play();
-        }, time * 1000);
+            const time = Math.round(acousticGuitar.sourceNode.buffer.duration);
+            setTimeout(function() {
+              $("#bigText").text("This is what I hear:");
+              acousticGuitar.addEffect(lowPassFilter);
+              acousticGuitar.play();
+            }, time * 1000);
 
-        setTimeout(function() {
-            $(".pids-wrapper").fadeOut();
-            $(".main").html("<h1 id='action'>This is what I hear:</h1><h1 id='bigText' >For <span class='drop'>Ch</span>ri<span class='drop'>st</span>ma<span class='drop'>s</span>, <span class='drop'>th</span>ere i<span class='drop'>s</span> no way your dad wan<span class='drop'>ts</span> gra<span class='drop'>y p</span>an<span class='drop'>ts</span></h1>");
-            $('.drop').animate({ opacity: 0 },2500);
-            $('.drop').animate({ opacity: 0.4 },4500);
-        }, time * 1000 * 2);
-      });
-
-       //const play = () => audio.play();
-          //resolve({ audioBlob, audioUrl, play });
+            setTimeout(function() {
+              $(".pids-wrapper").fadeOut();
+              $(".main").html("<h1 id='action'>This is what I hear:</h1><h1 id='bigText' >For <span class='drop'>Ch</span>ri<span class='drop'>st</span>ma<span class='drop'>s</span>, <span class='drop'>th</span>ere i<span class='drop'>s</span> no way your dad wan<span class='drop'>ts</span> gra<span class='drop'>y p</span>an<span class='drop'>ts</span></h1>");
+              $('.drop').animate({ opacity: 0 },2500);
+              $('.drop').animate({ opacity: 0.4 },4500);
+            }, time * 1000 * 2);
+            });*/
+      
+            const play = () => audio.play();
+              resolve({ audioBlob, audioUrl, play });
         });
-        //mediaRecorder.stop();
+
+        mediaRecorder.stop();
+        
       });
 
     resolve({ start, stop });
@@ -114,7 +118,35 @@ const endAction = async () => {
   $("#action").text("");
   $("#bigText").text("This is what you said:");
   const audio = await recorder.stop();
-  
+  var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
+          frequency: 220,
+          peak: 10
+          });
+  //audio.play();
+  var acousticGuitar = new Pizzicato.Sound(audio.audioUrl, function() {
+  acousticGuitar.play();
+  //console.log(acousticGuitar);
+  const time = Math.round(acousticGuitar.sourceNode.buffer.duration);
+  annyang.pause();
+  setTimeout(function() {
+      $("#bigText").text("This is what I hear:");
+
+        var acousticGuitar2 = new Pizzicato.Sound(audio.audioUrl, function() {
+          acousticGuitar2.addEffect(lowPassFilter);
+          acousticGuitar2.play();
+        });
+        //acousticGuitar.addEffect(lowPassFilter);
+        
+      }, time * 1000);
+
+      setTimeout(function() {
+        $(".pids-wrapper").fadeOut();
+        $(".main").html("<h1 id='action'>This is what I hear:</h1><h1 id='bigText' >For <span class='drop'>Ch</span>ri<span class='drop'>st</span>ma<span class='drop'>s</span>, <span class='drop'>th</span>ere i<span class='drop'>s</span> no way your dad wan<span class='drop'>ts</span> gra<span class='drop'>y p</span>an<span class='drop'>ts</span></h1>");
+            $('.drop').animate({ opacity: 0 },2500);
+            $('.drop').animate({ opacity: 0.4 },4500);
+          }, time * 1000 * 2);
+      });
+      
 }
 
 
