@@ -24,6 +24,7 @@ body{
     right: 0;
     position: absolute;
     color:#112E94;
+    font-size: 0.8rem;
 }
 #left{
     width: 45%;
@@ -31,6 +32,7 @@ body{
     top: 60px;
     position: absolute;
     color:#112E94;
+    font-size: 0.8rem;
 }
 
 .quote{
