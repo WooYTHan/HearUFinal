@@ -129,23 +129,31 @@ const endAction = async () => {
   const time = Math.round(acousticGuitar.sourceNode.buffer.duration);
   annyang.pause();
   setTimeout(function() {
-      $("#bigText").text("This is what I hear:");
+    $("#bigText").text("This is what I hear:");
 
-        var acousticGuitar2 = new Pizzicato.Sound(audio.audioUrl, function() {
-          acousticGuitar2.addEffect(lowPassFilter);
-          acousticGuitar2.play();
-        });
-        //acousticGuitar.addEffect(lowPassFilter);
-        
-      }, time * 1000);
+      var acousticGuitar2 = new Pizzicato.Sound(audio.audioUrl, function() {
+      acousticGuitar2.addEffect(lowPassFilter);
+      acousticGuitar2.play();
+    });
+  }, time * 1000);
 
-      setTimeout(function() {
-        $(".pids-wrapper").fadeOut();
-        $(".main").html("<h1 id='action'>This is what I hear:</h1><h1 id='bigText' >For <span class='drop'>Ch</span>ri<span class='drop'>st</span>ma<span class='drop'>s</span>, <span class='drop'>th</span>ere i<span class='drop'>s</span> no way your dad wan<span class='drop'>ts</span> gra<span class='drop'>y p</span>an<span class='drop'>ts</span></h1>");
-            $('.drop').animate({ opacity: 0 },2500);
-            $('.drop').animate({ opacity: 0.4 },4500);
-          }, time * 1000 * 2);
-      });
+  setTimeout(function() {
+    $(".pids-wrapper").fadeOut();
+    $(".main").html("<h1 id='action'>This is what I hear:</h1><h1 id='bigText' >For <span class='drop'>Ch</span>ri<span class='drop'>st</span>ma<span class='drop'>s</span>, <span class='drop'>th</span>ere i<span class='drop'>s</span> no way your dad wan<span class='drop'>ts</span> gra<span class='drop'>y p</span>an<span class='drop'>ts</span></h1>");
+    $('.drop').animate({ opacity: 0 },2500);
+    $('.drop').animate({ opacity: 0.4 },4500);
+      }, time * 1000 * 2);
+
+
+  setTimeout(function() {
+    $(".main").html("<div id='left'><img src='dot.svg' class='quote'/><h1>I can hear you, but it doesn't mean I can understand</h1></div><div id='right'><img src='dot.svg' class='quote2'/><h1>My grandpa has hearing loss, but I know little about it</h1></div><h1 id='bigText' >HEARING LOSS IS A MAJOR DISABILITY IN THE UNITED STATES</h1><img src='qrCode.png' class='qrCode'/><h3 id='website'>WWW.HEARU.TODAY</h3>").fadeIn('slow');
+    $(".main").hide().fadeIn(1500);
+    $("#bigText").css({ top: '300px' });
+      }, time * 1000 * 2 + 4500 + 200);
+    
+  });
+
+
       
 }
 
