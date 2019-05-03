@@ -87,7 +87,7 @@ const handleAction = async () => {
 
   setTimeout(function(){
     $( "#animate" ).animate({
-    fontSize: "2.0rem",
+    fontSize: "1.6rem",
     opacity: 0.4,
     top: "-=120",
      }, 1000, function() {
@@ -102,7 +102,7 @@ const handleAction = async () => {
       paddingTop: "5%",
      }, 1000);
     $( "#animate2" ).animate({
-      fontSize: "2.8rem",
+      fontSize: "2.24rem",
       opacity: 0.4,
       top: "-=50",
       }, 1000, function() {
