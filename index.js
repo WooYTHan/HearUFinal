@@ -1,4 +1,5 @@
-
+//var handleActionStart = false;
+var command2; 
 navigator.mediaDevices.getUserMedia({ audio: true, video: true })
 .then(function(stream) {
   audioContext = new AudioContext();
@@ -23,27 +24,21 @@ navigator.mediaDevices.getUserMedia({ audio: true, video: true })
       }
 
       var average = values/length;
-    
-    colorPids(Math.round(average))
-    //console.log(Math.round(average));
-    // colorPids(average);
+      colorPids(Math.round(average))
+   
   }
   })
   .catch(function(err) {
     /* handle the error */
 });
 
-function colorPids(vol) {
-  let all_pids = $('.pid');
-  let amout_of_pids = Math.round(vol/6);
-  let elem_range = all_pids.slice(0, amout_of_pids)
-  for (var i = 0; i < all_pids.length; i++) {
-    all_pids[i].style.backgroundColor="rgba(17, 46, 148, 0.05)";
-  }
-  for (var i = 0; i < elem_range.length; i++) {
 
-    // console.log(elem_range[i]);
-    elem_range[i].style.backgroundColor="#ffd000";
+function colorPids(vol) {
+  if(vol <= 20 && ($("#wave").attr('src') != "inactive.gif")){
+    $("#wave").attr("src","inactive.gif");
+  }
+  else if(vol > 20 && $("#wave").attr('src') != "active.gif"){
+    $("#wave").attr("src","active.gif");
   }
 }
 
@@ -57,8 +52,6 @@ const recordAudio = () =>
       audioChunks.push(event.data);
     });
 
-    console.log(audioChunks);
-
     const start = () => mediaRecorder.start();
 
     const stop = () =>
@@ -69,28 +62,6 @@ const recordAudio = () =>
           const audio = new Audio(audioUrl);
           audio.addEventListener("canplaythrough", function() {
           })
-          /*var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
-          frequency: 220,
-          peak: 10
-          });
-          audio.addEventListener("canplaythrough", function() {
-          })
-          var acousticGuitar = new Pizzicato.Sound(audioUrl, function() {
-            acousticGuitar.play();
-            const time = Math.round(acousticGuitar.sourceNode.buffer.duration);
-            setTimeout(function() {
-              $("#bigText").text("This is what I hear:");
-              acousticGuitar.addEffect(lowPassFilter);
-              acousticGuitar.play();
-            }, time * 1000);
-
-            setTimeout(function() {
-              $(".pids-wrapper").fadeOut();
-              $(".main").html("<h1 id='action'>This is what I hear:</h1><h1 id='bigText' >For <span class='drop'>Ch</span>ri<span class='drop'>st</span>ma<span class='drop'>s</span>, <span class='drop'>th</span>ere i<span class='drop'>s</span> no way your dad wan<span class='drop'>ts</span> gra<span class='drop'>y p</span>an<span class='drop'>ts</span></h1>");
-              $('.drop').animate({ opacity: 0 },2500);
-              $('.drop').animate({ opacity: 0.4 },4500);
-            }, time * 1000 * 2);
-            });*/
       
             const play = () => audio.play();
               resolve({ audioBlob, audioUrl, play });
@@ -107,16 +78,130 @@ const sleep = time => new Promise(resolve => setTimeout(resolve, time));
 var recorder;
 
 const handleAction = async () => {
+  //recorder = await recordAudio();
   recorder = await recordAudio();
-  $("#action").text("Try to Speak Out");
-  $("#bigText").text('"For Christmas, there is no way your dad wants gray pants"');
+  //$(".pids-wrapper").fadeIn();
 
-  recorder.start();
+
+  $(".main").html("<h1 id='animate'>SPEAKING LOUDER DOESN’T HELP</h1><h1 id='animate2'></h1><h1 id='animate3'></h1><h1 id='action2'></h1>");
+
+  setTimeout(function(){
+    $( "#animate" ).animate({
+    fontSize: "2.0rem",
+    opacity: 0.4,
+    top: "-=120",
+     }, 1000, function() {
+        $("#animate2").text("WHILE SPEAKING CLEARLY AND DIRECTLY HELPS");
+      });
+   }, 5000);
+
+  setTimeout(function(){
+    $( "#animate" ).animate({
+      opacity: 0.2,
+      top: "-=50",
+      paddingTop: "5%",
+     }, 1000);
+    $( "#animate2" ).animate({
+      fontSize: "2.8rem",
+      opacity: 0.4,
+      top: "-=50",
+      }, 1000, function() {
+        $(".pids-wrapper").fadeIn();
+        $("#animate3").html("<h1 id='bigText'>TRY  <span class='highlight'>SPEAK CLEARLY</span></h1>");
+        $("#action2").text("For Birthday, There is no way your dad wants gray pants");
+
+        recorder.start();
+
+        command2 = {
+          '*tag gray pants': preEndAction2,
+        }
+        annyang.addCommands(command2);
+      });
+   }, 8000);
+
+
+  //handleActionStart = true;
+  //recorder.start();
+}
+const preEndAction2 = async () =>{
+  $(".main").html("<h1 id='action'></h1><h1 id='bigText'>THIS TIME I HEARD:</h1>");
+
+  setTimeout(function(){
+    endAction2();
+  }, 2000);
 }
 
-const endAction = async () => {
+const endAction2 = async () =>{
+  annyang.removeCommands('*tag gray pants');
+  annyang.pause();
+  const audio = await recorder.stop();
+  var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
+          frequency: 280,
+          peak: 10
+          });
+  $(".main").html("<h1 id='action'>THIS TIME I HEARD:</h1><h1 id='bigText' >For BIR<span class='drop'>TH</span>DAY, there i<span class='drop'>s</span> no way your dad wan<span class='drop1'>ts</span> gra<span class='drop'>y p</span>an<span class='drop1'>ts</span></h1>");
+  $('.drop').css("opacity","0.4");
+  $('.drop1').css("opacity","0.4");
+  setTimeout(function(){
+    $('.drop').animate({ opacity: 1 },4500);
+  }, 3000);
+  var acousticGuitar2 = new Pizzicato.Sound(audio.audioUrl, function() {
+      acousticGuitar2.volume = 1;
+      acousticGuitar2.addEffect(lowPassFilter);
+      acousticGuitar2.play();
+      
+      const time = Math.round(acousticGuitar2.sourceNode.buffer.duration);
+
+      setTimeout(function(){
+      $(".pids-wrapper").fadeOut();
+      $(".main").hide().html("<img id='screen' src='screen9.png'/>").fadeIn('slow');
+      }, time * 1000 + 3000);
+
+  });
+
+  annyang.start();
+ 
+}
+
+const playVoice = async () =>{
+  $(".main").html("<h1 id='action'>PLEASE <span class='highlight'>READ OUT</span></h1><h1 id='bigText' >“FOR BIRTHDAY, THERE IS NO WAY YOUR DAD WANTS GRAY PANTS.”</h1><h1 id='tryAgain'></h1>")
+  
+  command2 = {
+    '*tag gray pants': preEndAction,
+  }
+  annyang.addCommands(command2);
+
+  recorder = await recordAudio();
+  recorder.start();
+
+  annyang.addCallback('result', function(phrases) {
+    var res = phrases[0].match("gray pants");
+      if(res == null && $('#tryAgain').length){
+        document.getElementById("tryAgain").innerHTML = "Sorry, I can't understand.<br>Please Try Again";
+        tryAgian();
+       }
+  });
+  var tryAgian = async () =>{
+    recorder = await recordAudio();
+    recorder.start();
+  }
+
+}
+
+const preEndAction = async () =>{
+  annyang.removeCommands('*tag gray pants');
+  annyang.pause();
   $("#action").text("");
-  $("#bigText").text("This is what you said:");
+  $("#tryAgain").text("");
+  $("#bigText").text("YOU SAID");
+
+  setTimeout(function(){
+    endAction();
+  },2000);
+}
+
+
+const endAction = async () => {
   const audio = await recorder.stop();
   var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
           frequency: 220,
@@ -124,51 +209,65 @@ const endAction = async () => {
           });
   //audio.play();
   var acousticGuitar = new Pizzicato.Sound(audio.audioUrl, function() {
+ 
   acousticGuitar.play();
-  //console.log(acousticGuitar);
   const time = Math.round(acousticGuitar.sourceNode.buffer.duration);
-  annyang.pause();
-  setTimeout(function() {
-    $("#bigText").text("This is what I hear:");
+  $(".main").html("<h1 id='action'>YOU SAID:</h1><h1 id='bigText' >FOR BIRTHDAY, THERE IS NO WAY YOUR DAD WANTS GRAY PANTS.</h1>");
+ 
+  //acousticGuitar.play();
+  //console.log(acousticGuitar);
 
-      var acousticGuitar2 = new Pizzicato.Sound(audio.audioUrl, function() {
-      acousticGuitar2.addEffect(lowPassFilter);
-      acousticGuitar2.play();
-    });
+  //annyang.pause();
+  setTimeout(function() {
+    $("#action").text("");
+    $("#bigText").text("WHAT I HEARD");
   }, time * 1000);
 
   setTimeout(function() {
-    $(".pids-wrapper").fadeOut();
-    $(".main").html("<h1 id='action'>This is what I hear:</h1><h1 id='bigText' >For <span class='drop'>Ch</span>ri<span class='drop'>st</span>ma<span class='drop'>s</span>, <span class='drop'>th</span>ere i<span class='drop'>s</span> no way your dad wan<span class='drop'>ts</span> gra<span class='drop'>y p</span>an<span class='drop'>ts</span></h1>");
+    $(".main").html("<h1 id='action'>WHAT I HEARD:</h1><h1 id='bigText' >For BIR<span class='drop'>TH</span>DAY, there i<span class='drop'>s</span> no way your dad wan<span class='drop'>ts</span> gra<span class='drop'>PE</span> an<span class='drop'>ts</span></h1>");
     $('.drop').animate({ opacity: 0 },2500);
     $('.drop').animate({ opacity: 0.4 },4500);
-      }, time * 1000 * 2);
+    var acousticGuitar2 = new Pizzicato.Sound(audio.audioUrl, function() {
+      acousticGuitar2.volume = 1;
+      acousticGuitar2.addEffect(lowPassFilter);
+      acousticGuitar2.play();
+    });
+      }, time * 1000 + 3000);
+   
+   setTimeout(function(){
+   $(".pids-wrapper").fadeOut();
+   $(".main").hide().html("<img id='screen' src='screen1.png'/>").fadeIn('slow');
+   }, time * 1000 + 10000 + 7000);
 
+   setTimeout(function(){
+   $(".main").hide().html("<img id='screen' src='screen2.png'/>").fadeIn('slow');
+   }, time * 1000 + 10000 + 16000);
 
-  setTimeout(function() {
-    $(".main").html("<div id='left'><img src='dot.svg' class='quote'/><h1>I can hear you, but it doesn't mean I can understand</h1></div><div id='right'><img src='dot.svg' class='quote2'/><h1>My grandpa has hearing loss, but I know little about it</h1></div><h1 id='bigText' >HEARING LOSS IS A MAJOR DISABILITY IN THE UNITED STATES</h1><img src='qrCode.png' class='qrCode'/><h3 id='website'>WWW.HEARU.TODAY</h3>").fadeIn('slow');
-    $(".main").hide().fadeIn(1500);
-    $("#bigText").css({ top: '300px' });
-      }, time * 1000 * 2 + 4500 + 200);
-    
+   setTimeout(function(){
+   $(".main").hide().html("<img id='screen' src='screen3.png'/>").fadeIn('slow');
+   }, time * 1000 + 10000 + 24000);
+
+   setTimeout(function(){
+   $(".main").hide().html("<img id='screen' src='screen4.png'/>").fadeIn('slow');
+   annyang.start();
+   }, time * 1000 + 10000 + 32000);
+  
   });
-
-
       
 }
-
 
 if (annyang) {
   // Let's define our first command. First the text we expect, and then the function it should call
   var commands = {
-    'I am ready': handleAction,
-    'For christmas *tag': endAction
-
+    'sure': playVoice,
+    'yes': handleAction,
+    'repeat': playVoice,
   };
-
+  
   // Add our commands to annyang
   annyang.addCommands(commands);
   // Start listening. You can call this here, or attach this call to an event, button, etc.
   annyang.start();
 }
+
 

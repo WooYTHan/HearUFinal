@@ -8,6 +8,16 @@ body{
 	font-family: 'FjallaOne', sans-serif;
 
 }
+#tryAgain{
+  color: #FFA800;
+  margin-top: 10%;
+}
+#screen{
+  height: 100%;
+}
+.wave{
+  width: 40%;
+}
 .main{
 	position: relative;
     left: 30%;
@@ -56,6 +66,7 @@ body{
   margin-top: 10px;
 }
 .pids-wrapper{
+  z-index: 3;
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -69,6 +80,10 @@ body{
   margin: 5px;
 }
 
+.highlight{
+  color: #FFA800;
+}
+
 #img{
 	  height: 40px;
     position: relative;
@@ -79,7 +94,7 @@ body{
 	color: #112E94;
     /* left: 30%; */
     padding: 0 10% 0 10%;
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     width: 80%;
     text-align: center;
     position: relative;
@@ -88,10 +103,32 @@ body{
     text-transform: uppercase;
 
 }
+#animate{
+  padding-top: 15%;
+  font-size: 4.5rem;
+  color: #112E94;
+}
+#animate2{
+  font-size: 4.5rem;
+  color: #112E94;
+  padding-left: 15%;
+  padding-right: 15%;
+}
 
 #action{
 	padding-top: 15%;
 	color: #112E94;
+  font-size: 3.0rem;
 	font-weight: 300;
 	text-transform: uppercase;
+}
+
+#action2{
+  padding-top: 10%;
+  color: #112E94;
+  font-size: 3.0rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  padding-left: 25%;
+  padding-right: 25%;
 }
