@@ -13,7 +13,7 @@ body{
   margin-top: 10%;
 }
 #screen{
-  height: 100%;
+  height: 80%;
 }
 .wave{
   width: 40%;
@@ -94,7 +94,7 @@ body{
 	color: #112E94;
     /* left: 30%; */
     padding: 0 10% 0 10%;
-    font-size: 4.5rem;
+    font-size: 3.6rem;
     width: 80%;
     text-align: center;
     position: relative;
@@ -105,11 +105,11 @@ body{
 }
 #animate{
   padding-top: 15%;
-  font-size: 4.5rem;
+  font-size: 3.6rem;
   color: #112E94;
 }
 #animate2{
-  font-size: 4.5rem;
+  font-size: 3.6rem;
   color: #112E94;
   padding-left: 15%;
   padding-right: 15%;
@@ -118,7 +118,7 @@ body{
 #action{
 	padding-top: 15%;
 	color: #112E94;
-  	font-size: 3.0rem;
+  font-size: 2.4rem;
 	font-weight: 300;
 	text-transform: uppercase;
 	line-height: 1.6
@@ -127,7 +127,7 @@ body{
 #action2{
   padding-top: 10%;
   color: #112E94;
-  font-size: 3.0rem;
+  font-size: 2.4rem;
   font-weight: 300;
   text-transform: uppercase;
   padding-left: 25%;
