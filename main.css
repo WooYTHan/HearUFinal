@@ -118,9 +118,10 @@ body{
 #action{
 	padding-top: 15%;
 	color: #112E94;
-  font-size: 3.0rem;
+  	font-size: 3.0rem;
 	font-weight: 300;
 	text-transform: uppercase;
+	line-height: 1.6
 }
 
 #action2{
