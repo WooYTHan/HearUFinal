@@ -108,7 +108,7 @@ const handleAction = async () => {
       }, 1000, function() {
         $(".pids-wrapper").fadeIn();
         $("#animate3").html("<h1 id='bigText'>TRY  <span class='highlight'>SPEAK CLEARLY</span></h1>");
-        $("#action2").text("For Birthday, There is no way your dad wants gray pants");
+        $("#action2").text("For his Birthday, There is no way your dad wants gray pants");
 
         recorder.start();
 
@@ -139,7 +139,7 @@ const endAction2 = async () =>{
           frequency: 280,
           peak: 10
           });
-  $(".main").html("<h1 id='action'>THIS TIME I HEARD:</h1><h1 id='bigText' >For BIR<span class='drop'>TH</span>DAY, there i<span class='drop'>s</span> no way your dad wan<span class='drop1'>ts</span> gra<span class='drop'>y p</span>an<span class='drop1'>ts</span></h1>");
+  $(".main").html("<h1 id='action'>THIS TIME I HEARD:</h1><h1 id='bigText' >For <span class='drop'>H</span>I<span class='drop'>S</span> BIR<span class='drop'>TH</span>DAY, there i<span class='drop'>s</span> no way your dad wan<span class='drop1'>ts</span> gra<span class='drop'>y p</span>an<span class='drop1'>ts</span></h1>");
   $('.drop').css("opacity","0.4");
   $('.drop1').css("opacity","0.4");
   setTimeout(function(){
@@ -164,7 +164,7 @@ const endAction2 = async () =>{
 }
 
 const playVoice = async () =>{
-  $(".main").html("<h1 id='action'>PLEASE <span class='highlight'>READ OUT</span></h1><h1 id='bigText' >“FOR BIRTHDAY, THERE IS NO WAY YOUR DAD WANTS GRAY PANTS.”</h1><h1 id='tryAgain'></h1>")
+  $(".main").html("<h1 id='action'>PLEASE <span class='highlight'>READ OUT</span></h1><h1 id='bigText' >“FOR HIS BIRTHDAY, THERE IS NO WAY YOUR DAD WANTS GRAY PANTS.”</h1><h1 id='tryAgain'></h1>")
   
   command2 = {
     '*tag gray pants': preEndAction,
@@ -212,7 +212,7 @@ const endAction = async () => {
  
   acousticGuitar.play();
   const time = Math.round(acousticGuitar.sourceNode.buffer.duration);
-  $(".main").html("<h1 id='action'>YOU SAID:</h1><h1 id='bigText' >FOR BIRTHDAY, THERE IS NO WAY YOUR DAD WANTS GRAY PANTS.</h1>");
+  $(".main").html("<h1 id='action'>YOU SAID:</h1><h1 id='bigText' >FOR HIS BIRTHDAY, THERE IS NO WAY YOUR DAD WANTS GRAY PANTS.</h1>");
  
   //acousticGuitar.play();
   //console.log(acousticGuitar);
@@ -224,7 +224,7 @@ const endAction = async () => {
   }, time * 1000);
 
   setTimeout(function() {
-    $(".main").html("<h1 id='action'>WHAT I HEARD:</h1><h1 id='bigText' >For BIR<span class='drop'>TH</span>DAY, there i<span class='drop'>s</span> no way your dad wan<span class='drop'>ts</span> gra<span class='drop'>PE</span> an<span class='drop'>ts</span></h1>");
+    $(".main").html("<h1 id='action'>WHAT I HEARD:</h1><h1 id='bigText' >For <span class='drop'>H</span>I<span class='drop'>S</span> BIR<span class='drop'>TH</span>DAY, there i<span class='drop'>s</span> no way your dad wan<span class='drop'>ts</span> gra<span class='drop'>PE</span> an<span class='drop'>ts</span></h1>");
     $('.drop').animate({ opacity: 0 },2500);
     $('.drop').animate({ opacity: 0.4 },4500);
     var acousticGuitar2 = new Pizzicato.Sound(audio.audioUrl, function() {
