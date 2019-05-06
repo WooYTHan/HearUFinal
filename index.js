@@ -113,7 +113,7 @@ const handleAction = async () => {
         recorder.start();
 
         command2 = {
-          '*tag gray pants': preEndAction2,
+          '*tag YOUR DAD WANTS GRAY PANTS': preEndAction2,
         }
         annyang.addCommands(command2);
       });
@@ -132,7 +132,7 @@ const preEndAction2 = async () =>{
 }
 
 const endAction2 = async () =>{
-  annyang.removeCommands('*tag gray pants');
+  annyang.removeCommands('*tag YOUR DAD WANTS GRAY PANTS');
   annyang.pause();
   const audio = await recorder.stop();
   var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
@@ -167,7 +167,7 @@ const playVoice = async () =>{
   $(".main").html("<h1 id='action'>PLEASE <span class='highlight'>READ OUT</span></h1><h1 id='bigText' >“FOR HIS BIRTHDAY, THERE IS NO WAY YOUR DAD WANTS GRAY PANTS.”</h1><h1 id='tryAgain'></h1>")
   
   command2 = {
-    '*tag gray pants': preEndAction,
+    '*tag YOUR DAD WANTS GRAY PANTS': preEndAction,
   }
   annyang.addCommands(command2);
 
@@ -189,7 +189,7 @@ const playVoice = async () =>{
 }
 
 const preEndAction = async () =>{
-  annyang.removeCommands('*tag gray pants');
+  annyang.removeCommands('*tag YOUR DAD WANTS GRAY PANTS');
   annyang.pause();
   $("#action").text("");
   $("#tryAgain").text("");
