@@ -176,15 +176,15 @@ const playVoice = async () =>{
 
   annyang.addCallback('result', function(phrases) {
     //console.log(phrases);
-    var flag = flase; 
+    var flag = 0; 
     for(var i = 0; i < phrases.length; i++){
       var res = phrases[i].match("gray pants");
       if(res != null){
-        flag = true;
+        flag = 1;
       }
     }
     var res = phrases[0].match("gray pants");
-      if(!flag && $('#tryAgain').length){
+      if(flag == 0 && $('#tryAgain').length){
         document.getElementById("tryAgain").innerHTML = "Sorry, I can't understand.<br>Please Try Again";
         tryAgian();
        }
