@@ -175,9 +175,16 @@ const playVoice = async () =>{
   recorder.start();
 
   annyang.addCallback('result', function(phrases) {
-    console.log(phrases);
+    //console.log(phrases);
+    var flag = flase; 
+    fot(var i = 0; i < phrases.length; i++){
+      var res = phrases[i].match("gray pants");
+      if(res != null){
+        flag = true;
+      }
+    }
     var res = phrases[0].match("gray pants");
-      if(res == null && $('#tryAgain').length){
+      if(!flag && $('#tryAgain').length){
         document.getElementById("tryAgain").innerHTML = "Sorry, I can't understand.<br>Please Try Again";
         tryAgian();
        }
