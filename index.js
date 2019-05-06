@@ -19,8 +19,7 @@ navigator.mediaDevices.getUserMedia({ audio: true, video: true })
       var values = 0;
 
       var length = array.length;
-      var i;
-      for (i = 0; i < length; i++) {
+      for (var i = 0; i < length; i++) {
         values += (array[i]);
       }
 
@@ -178,7 +177,7 @@ const playVoice = async () =>{
   annyang.addCallback('result', function(phrases) {
     //console.log(phrases);
     var flag = flase; 
-    fot(var i = 0; i < phrases.length; i++){
+    for(var i = 0; i < phrases.length; i++){
       var res = phrases[i].match("gray pants");
       if(res != null){
         flag = true;
