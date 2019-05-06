@@ -83,7 +83,7 @@ const handleAction = async () => {
   //$(".pids-wrapper").fadeIn();
 
 
-  $(".main").html("<h1 id='animate'>SPEAKING LOUDER DOESN’T HELP</h1><h1 id='animate2'></h1><h1 id='animate3'></h1><h1 id='action2'></h1>");
+  $(".main").html("<h1 id='animate'>SPEAKING LOUDER DOESN’T HELP</h1><h1 id='animate2'></h1><h1 id='animate3'></h1><h1 id='action2'></h1><h1 id='tryAgain'></h1>");
 
   setTimeout(function(){
     $( "#animate" ).animate({
@@ -164,6 +164,7 @@ const endAction2 = async () =>{
 }
 
 const playVoice = async () =>{
+  $(".pids-wrapper").fadeIn()
   $(".main").html("<h1 id='action'>PLEASE <span class='highlight'>READ OUT</span></h1><h1 id='bigText' >“FOR HIS BIRTHDAY, THERE IS NO WAY YOUR DAD WANTS GRAY PANTS.”</h1><h1 id='tryAgain'></h1>")
   
   command2 = {
