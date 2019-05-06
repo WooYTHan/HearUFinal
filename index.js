@@ -19,7 +19,8 @@ navigator.mediaDevices.getUserMedia({ audio: true, video: true })
       var values = 0;
 
       var length = array.length;
-      for (var i = 0; i < length; i++) {
+      var i;
+      for (i = 0; i < length; i++) {
         values += (array[i]);
       }
 
